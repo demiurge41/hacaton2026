@@ -1,0 +1,548 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #aeb8e2 0%, #9b9a9c 100%);
+    min-height: 100vh;
+}
+
+/* Навигация */
+.navbar {
+    background: white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #66baea 0%, #a24b81 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: #999999;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Герой-секция */
+.hero {
+    text-align: center;
+    color: rgb(72, 38, 165);
+    margin-bottom: 60px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Сетка направлений */
+.directions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.direction-card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.direction-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.direction-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.direction-card p {
+    color: #888;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.btn-start {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Контейнер теста */
+.test-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    background: rgba(255,255,255,0.3);
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-fill {
+    background: white;
+    height: 100%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.question-counter {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Карточка вопроса */
+.question-card {
+    background: white;
+    border-radius: 24px;
+    padding: 45px 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.question-card h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 35px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+/* Список вариантов ответов */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option-btn {
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 14px;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #495057;
+}
+
+.option-btn:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+    transform: translateX(5px);
+}
+
+.option-btn:active {
+    transform: scale(0.98);
+}
+
+/* Результаты */
+.result-container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.result-card {
+    background: white;
+    border-radius: 30px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.result-card h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Круг с процентом */
+.stat-circle {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.percentage {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.stat-status {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+
+
+.scale-bar {
+    display: flex;
+    height: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.scale-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.scale-labels span {
+    text-align: center;
+    flex: 1;
+    font-weight: 500;
+}
+
+.your-score-marker {
+    text-align: center;
+    padding: 10px;
+    background: #e3e2fd;
+    border-radius: 30px;
+    font-weight: bold;
+    color: #542461;
+    margin-top: 10px;
+}
+
+/* Детали результата */
+.result-details {
+    text-align: left;
+    margin: 30px 0;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 16px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Рекомендация */
+.recommendation {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-left: 4px solid #667eea;
+    padding: 18px;
+    margin: 25px 0;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.recommendation p {
+    margin: 8px 0;
+    color: #495057;
+}
+
+.recommendation strong {
+    color: #667eea;
+}
+
+/* Кнопки действий */
+.result-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary, .btn-share {
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-share {
+    background: #28a745;
+    color: white;
+}
+
+.btn-share:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+/* Профиль */
+.profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+
+
+
+.profile-container h1 {
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+
+}
+
+
+
+
+
+
+.results-list {
+    margin-top: 20px;
+}
+
+.result-item {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.result-item:hover {
+    transform: translateX(5px);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.direction-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.result-date {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.result-stats {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.score {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.time {
+    color: #666;
+}
+
+.status-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge.отлично { background: #4caf50; color: white; }
+.status-badge.хорошо { background: #2196f3; color: white; }
+.status-badge.средне { background: #ff9800; color: white; }
+.status-badge.нужно-подтянуть { background: #f44336; color: white; }
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 24px;
+}
+
+.empty-state p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .question-card {
+        padding: 25px 20px;
+    }
+    
+    .question-card h2 {
+        font-size: 1.3rem;
+    }
+    
+    .result-card {
+        padding: 30px 20px;
+    }
+    
+    .result-actions {
+        flex-direction: column;
+    }
+    
+    .btn-primary, .btn-secondary, .btn-share {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .scale-labels span {
+        font-size: 9px;
+    }
+    
+    .scale-segment {
+        font-size: 10px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.question-card, .result-card, .direction-card {
+    animation: fadeIn 0.5s ease-out;
+}

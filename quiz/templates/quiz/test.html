@@ -1,0 +1,111 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="test-container">
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ progress }}%"></div>
+    </div>
+
+    <div class="question-counter">
+        Вопрос {{ question_number }} из {{ total_questions }}
+    </div>
+
+    <div class="question-card">
+        <h2>{{ question.text }}</h2>
+
+        <div class="options-list">
+            <button class="option-btn" data-option="1">{{ question.option1 }}</button>
+            <button class="option-btn" data-option="2">{{ question.option2 }}</button>
+            <button class="option-btn" data-option="3">{{ question.option3 }}</button>
+            <button class="option-btn" data-option="4">{{ question.option4 }}</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isAnswered = false;
+
+    const questionId = {{ question.id }};
+    const currentQuestionIndex = {{ question_number }};
+    const totalQuestions = {{ total_questions }};
+
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const selectedOption = this.dataset.option;
+
+            // подсветка выбранного ответа
+            this.style.backgroundColor = '#4caf50';
+            this.style.color = 'white';
+
+            // блокируем все кнопки
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+
+            fetch('{% url "quiz:submit_answer" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    question_id: questionId,
+                    selected_option: selectedOption
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                const nextQuestionIndex = currentQuestionIndex + 1;
+
+                setTimeout(() => {
+                    if (currentQuestionIndex < totalQuestions) {
+                        window.location.href =
+                            '{% url "quiz:question" 999 %}'.replace('999', nextQuestionIndex);
+                    } else {
+                        window.location.href = '{% url "quiz:finish_test" %}';
+                    }
+                }, 500);
+
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+
+                const nextQuestionIndex = currentQuestionIndex + 1;
+
+                setTimeout(() => {
+                    if (currentQuestionIndex < totalQuestions) {
+                        window.location.href =
+                            '{% url "quiz:question" 999 %}'.replace('999', nextQuestionIndex);
+                    } else {
+                        window.location.href = '{% url "quiz:finish_test" %}';
+                    }
+                }, 500);
+            });
+        });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+
+        return cookieValue;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Мои результаты</h1>
+    
+    {% if results %}
+    <div class="results-list">
+        {% for result in results %}
+        <div class="result-item">
+            <div class="result-header">
+                <span class="direction-name">{{ result.direction.name }}</span>
+                <span class="result-date">{{ result.created_at|date:"d.m.Y H:i" }}</span>
+            </div>
+            <div class="result-stats">
+                <span class="score">{{ result.correct_answers }}/{{ result.total_questions }}</span>
+                <span class="time">{{ result.time_spent_seconds }} секунд</span>
+                <span class="status-badge {{ result.status|lower }}">{{ result.status }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Вы еще не проходили тесты</p>
+        <a href="{% url 'quiz:index' %}" class="btn-primary">Пройти первый тест</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

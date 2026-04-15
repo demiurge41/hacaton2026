@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuiz - Тест для разработчиков</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quiz/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'quiz:index' %}" class="nav-brand">DevQuiz</a>
+            <div class="nav-links">
+                <a href="{% url 'quiz:profile' %}">Мои результаты</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

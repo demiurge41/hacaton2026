@@ -1,0 +1,72 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<div class="result-container">
+    <div class="result-card">
+        <h1>Результаты теста</h1>
+        
+        <div class="stat-circle">
+            <span class="percentage">{{ percentage }}%</span>
+        </div>
+        <div class="stat-status {{ status|lower }}">{{ status }}</div>
+        
+        
+            
+            <!-- Маркер результата -->
+            <div class="your-score-marker" style="text-align: center;">
+                <div style="
+                    {% if correct_count <= 4 %}
+                        text-align: left;
+                    {% elif correct_count <= 8 %}
+                        text-align: center;
+                    {% else %}
+                        text-align: right;
+                    {% endif %}
+                ">
+                </div>
+                Ваш результат: {{ correct_count }} из {{ total_questions }}
+            </div>
+
+        <div class="recommendation">
+            {% if percentage >= 80 %}
+                <p><strong>Отличный результат!</strong> Вы готовы к собеседованиям.</p>
+                <p>Рекомендуем: продвинутые курсы и алгоритмы.</p>
+            {% elif percentage >= 60 %}
+                <p><strong>Хороший результат!</strong> Есть над чем поработать.</p>
+                <p>Рекомендуем: практические задания и средние курсы.</p>
+            {% elif percentage >= 40 %}
+                <p><strong>Неплохо!</strong> Нужно подтянуть базу.</p>
+                <p>Рекомендуем: базовые курсы и больше практики.</p>
+            {% else %}
+                <p><strong>Стоит начать с основ.</strong></p>
+                <p>Рекомендуем: курс "Введение в программирование".</p>
+            {% endif %}
+        </div>
+        
+        <div class="result-details">
+            <div class="detail-item">
+                <span class="detail-label">Правильные ответы:</span>
+                <span class="detail-value">{{ correct_count }} / {{ total_questions }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Время прохождения:</span>
+                <span class="detail-value">{{ minutes }} мин {{ seconds }} сек</span>
+            </div>
+            {% if result %}
+            <div class="detail-item">
+                <span class="detail-label">Направление:</span>
+                <span class="detail-value">{{ result.direction.name }}</span>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="result-actions">
+            <a href="{% url 'quiz:index' %}" class="btn-primary">Пройти другой тест</a>
+            <a href="{% url 'quiz:profile' %}" class="btn-secondary">Мои результаты</a>
+        </div>
+        
+    </div>
+</div>
+
+</script>
+{% endblock %}

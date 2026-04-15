@@ -1,0 +1,20 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<div class="hero">
+    <h1>Проверь свои знания!</h1>
+    <p>Выбери направление и пройди тест за несколько минут</p>
+</div>
+
+<div class="directions-grid">
+    {% for direction in directions %}
+    <div class="direction-card">
+        <h3>{{ direction.name }}</h3>
+        <p>{{ direction.questions.count }} вопросов</p>
+        <a href="{% url 'quiz:start_test' direction.id %}" class="btn-start">Начать тест →</a>
+    </div>
+    {% empty %}
+    <p style="color: white;">Нет доступных направлений. Загрузите вопросы командой: python manage.py load_questions</p>
+    {% endfor %}
+</div>
+{% endblock %}
